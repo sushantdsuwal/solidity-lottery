@@ -15,7 +15,7 @@ var input = {
   settings: {
     outputSelection: {
       '*': {
-        '*': ['*'],
+        '*': ['abi', 'evm.bytecode'],
       },
     },
   },
@@ -23,16 +23,6 @@ var input = {
 
 const output = JSON.parse(solc.compile(JSON.stringify(input)));
 var outputContracts = output.contracts['Lottery.sol']['Lottery'];
-// exports ABI interface
+
 module.exports.abi = outputContracts.abi;
-
-// exports bytecode from smart contract
 module.exports.bytecode = outputContracts.evm.bytecode.object;
-
-// const interface = output.contracts['Lottery.sol'].Lottery.abi;
-// const bytecode = output.contracts['Lottery.sol'].Lottery.evm.bytecode.object;
-
-// module.exports = {
-//   interface,
-//   bytecode,
-// };
